@@ -1,0 +1,3 @@
+# 忽略所有csv数据文件
+data/*.csv 
+model/
