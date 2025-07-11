@@ -49,6 +49,29 @@
 - 最多的用户有 279 个查询词
 - 25%/50%/75%分位数分别为 1/1/3
 
+## 实验结果与最佳模型
+
+### 交叉测试主要结果（准确率/Acc，F1分数/F1）
+
+| 特征         | 任务      | 模型                | Acc    | F1    |
+|--------------|-----------|---------------------|--------|-------|
+| tfidf+stat   | Gender    | SVM                 | 0.769  | 0.535 |
+| tfidf        | Gender    | LogisticRegression  | 0.791  | 0.529 |
+| bow          | Gender    | XGBoost             | 0.791  | 0.528 |
+| tfidf+stat   | Age       | XGBoost             | 0.565  | 0.292 |
+| tfidf        | Age       | LogisticRegression  | 0.566  | 0.300 |
+| bow+stat     | Age       | XGBoost             | 0.566  | 0.293 |
+| tfidf+stat   | Education | XGBoost             | 0.542  | 0.261 |
+| tfidf        | Education | LogisticRegression  | 0.543  | 0.268 |
+| bow+stat     | Education | XGBoost             | 0.541  | 0.260 |
+
+> 详细全部实验结果见 `model/cross_test_results.csv`，可视化见 `report/` 目录。
+
+### 最佳模型方案
+- **性别（Gender）**：SVM + tfidf+stat，F1=0.535
+- **年龄（Age）**、**学历（Education）**：XGBoost/LogisticRegression + tfidf/组合特征，F1约0.26~0.30
+- 所有模型均已保存于 `model/` 目录，可直接加载用于预测。
+
 ---
 
 本项目后续将基于上述数据进行特征工程与建模。 
